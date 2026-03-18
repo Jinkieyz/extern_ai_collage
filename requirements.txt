@@ -1,0 +1,23 @@
+# Core ML framework
+torch>=2.0.0
+
+# Diffusion models and pipelines
+diffusers>=0.25.0
+
+# Text encoding (CLIP)
+transformers>=4.30.0
+
+# Training utilities
+accelerate>=0.25.0
+
+# LoRA implementation
+peft>=0.7.0
+
+# Image handling
+pillow>=10.0.0
+
+# Safe model weight format (used by peft/diffusers)
+safetensors>=0.4.0
+
+# Progress bars
+tqdm>=4.65.0

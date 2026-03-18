@@ -1,0 +1,49 @@
+# Training configuration for LoRA
+# Copy and adapt to your project
+
+# Paths (CHANGE THESE)
+paths:
+  dataset: "/path/to/your/dataset"          # Folder with metadata.jsonl and images/
+  output: "/path/to/output"                  # Output for checkpoints and LoRA
+  cache: "/path/to/output/latent_cache"      # Cache for latents
+
+# Model configuration
+model:
+  base_model: "runwayml/stable-diffusion-v1-5"  # Base model from Hugging Face
+  image_size: 256                               # Training image size
+
+# LoRA configuration
+lora:
+  rank: 64                    # Rank (4-128, higher = more capacity)
+  alpha: 32                   # Alpha (typically rank/2)
+  dropout: 0.1                # Dropout for regularization
+  target_modules:             # Which layers get LoRA
+    - "to_q"
+    - "to_k"
+    - "to_v"
+    - "to_out.0"
+
+# Training parameters
+training:
+  epochs: 50                  # Number of epochs (10-100 typical)
+  batch_size: 1               # Batch size (1-4 for 6GB VRAM)
+  learning_rate: 1.0e-4       # Learning rate (1e-5 to 1e-4)
+  gradient_accumulation: 8    # Accumulate gradients for effective larger batch
+  warmup_steps: 100           # Warmup for lr scheduler
+  save_every: 10              # Save checkpoint every N epochs
+
+# Optimizer
+optimizer:
+  type: "AdamW"
+  scheduler: "cosine"
+
+# GPU safety (for 6GB VRAM)
+safety:
+  max_vram_mb: 5500           # Max VRAM usage
+  max_temp_c: 78              # Max GPU temperature
+  pause_on_overheat: true     # Pause if too hot
+
+# Trigger word
+trigger:
+  word: "my_style"            # Replace with your own trigger word
+  caption_format: "a photo of {trigger}, {description}"

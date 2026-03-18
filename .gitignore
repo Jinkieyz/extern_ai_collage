@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Training outputs (large files)
+*.pt
+*.safetensors
+*.ckpt
+latent_cache/
+checkpoints/
+
+# Logs
+*.log
