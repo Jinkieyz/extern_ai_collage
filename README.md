@@ -2,6 +2,24 @@
 
 A project for training a LoRA (Low-Rank Adaptation) that captures an artistic visual aesthetic and applies it to image generation.
 
+## Example: Training Data vs Generated Output
+
+| Training Image | Generated Image |
+|----------------|-----------------|
+| ![Training sample](examples/dataset_sample/img_0200.png) | ![Generated sample](examples/generated/nadja_025_seed3025.png) |
+
+The model learns visual patterns from the training data and generates new images that capture the same aesthetic.
+
+## Dataset Characteristics
+
+This LoRA was trained on a **highly heterogeneous dataset** of approximately **5900 images** spanning:
+- Multiple materials (glass, metal, textile, ceramic, mixed media)
+- Various scales (jewelry to large sculptures)
+- Different time periods and artistic phases
+- Diverse documentation contexts (studio, exhibition, outdoor)
+
+This heterogeneity is intentional: rather than training on a narrow, consistent style, the model learns a broader "visual fingerprint" that encompasses the full range of the artist's practice.
+
 ## Project Overview
 
 This project uses machine learning to:
