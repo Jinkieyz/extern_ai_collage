@@ -44,22 +44,23 @@ The rank determines how much "capacity" the model has to learn new concepts.
 
 **Why 64?** This rank provides enough capacity to capture a distinctive visual style while preserving the base model's ability to render coherent images. Lower ranks would make the style too subtle; higher ranks risk creating artifacts or losing image quality.
 
-### 50 Epochs: Learning Without Memorizing
+### 7 Epochs: The Sweet Spot
 
 An epoch is one complete pass through the dataset.
 
 | Epochs | Learning Phase | Risk |
 |--------|----------------|------|
-| 1-10 | Early learning | Underfitting: style not yet captured |
-| 10-30 | Rapid improvement | Model developing style understanding |
-| **30-50** | **Refinement** | **Style solidified, details emerging** |
-| 50-100 | Diminishing returns | Potential overfitting begins |
-| 100+ | Overfitting zone | Model starts memorizing, loses generalization |
+| 1-2 | Early learning | Underfitting: style not yet captured |
+| 3-4 | Rapid improvement | Model developing style understanding |
+| 5-6 | Strong style | Good diversity, minimal artifacts |
+| **7** | **Optimal** | **Peak quality, novel compositions** |
+| 8+ | Overfitting zone | Model starts memorizing, loses generalization |
 
-**Why stop at 50?** At this point, the loss curve has typically plateaued. Further training risks:
-- Memorizing specific training images
-- Losing ability to generate novel combinations
-- Artifacts from overfitting
+**Why stop at 7?** Through systematic epoch sampling (generating 100 images per epoch with identical parameters), epoch 7 emerged as the sweet spot:
+- Strong style transfer without memorization
+- Good diversity in outputs
+- Minimal artifacts
+- Novel compositions that feel authentic
 
 ### Learning Rate: 1e-4
 

@@ -18,7 +18,7 @@ Uses only the trained token without additional descriptors:
 
 ```bash
 python scripts/generate_simple.py \
-    --checkpoint ./checkpoints/epoch_050 \
+    --checkpoint ./checkpoints/epoch_007 \
     --output ./output \
     --count 10 \
     --token your_token_name

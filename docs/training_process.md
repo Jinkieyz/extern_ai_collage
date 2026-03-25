@@ -13,7 +13,7 @@ This document describes step by step how LoRA training works and what happens te
 ### What Happens
 1. Images are loaded and converted to RGB
 2. Images are cropped to square format (center crop)
-3. Images are scaled to 256x256 pixels
+3. Images are scaled to 512x512 pixels
 4. Text descriptions (captions) are created for each image
 
 ### Caption Format
@@ -34,7 +34,7 @@ The trigger word (`nadja_art`) functions as a "key" that activates the learned s
 ## Step 2: Latent Caching
 
 ### What is Latent Space?
-Instead of working directly with pixels (256x256x3 = 196,608 values), the VAE compresses the image to a "latent space" (32x32x4 = 4,096 values). This is 48x less data but retains the essence of the images.
+Instead of working directly with pixels (512x512x3 = 786,432 values), the VAE compresses the image to a "latent space" (64x64x4 = 16,384 values). This is 48x less data but retains the essence of the images.
 
 ### Why Cache?
 - VAE encoding is computationally intensive
@@ -77,7 +77,7 @@ These layers control how the model "attends" to different parts of the prompt an
 
 ### Training Loop
 ```python
-for epoch in range(50):
+for epoch in range(7):  # 7 epochs is the sweet spot
     for batch in dataloader:
         # 1. Load cached latents
         latents = batch['latents']
@@ -105,11 +105,12 @@ A typical loss curve looks like this:
 | Epoch | Loss | Comment |
 |-------|------|---------|
 | 1 | 0.12 | Model starts learning |
-| 10 | 0.10 | Rapid improvement |
-| 20 | 0.098 | Starting to plateau |
-| 30 | 0.097 | Continued improvement |
-| 40 | 0.097 | Stabilizing |
-| 50 | 0.094 | Final |
+| 2 | 0.11 | Rapid improvement |
+| 3 | 0.10 | Style emerging |
+| 4 | 0.095 | Continued improvement |
+| 5 | 0.09 | Strong style |
+| 6 | 0.085 | Refinement |
+| 7 | 0.082 | Optimal stopping point |
 
 ## Step 4: Image Generation
 
